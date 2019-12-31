@@ -9,13 +9,13 @@ Version 3 drops support for PHP versions prior to PHP 7.1.
 
 ## AssertionInterface
 
-The primary change is the `Zend\Permissions\Rbac\AssertionInterface::assert()`
+The primary change is the `Laminas\Permissions\Rbac\AssertionInterface::assert()`
 method definition.
 
 The new `assert` method has the following signature:
 
 ```php
-namespace Zend\Permissions\Rbac;
+namespace Laminas\Permissions\Rbac;
 
 public function assert(
     Rbac $rbac,
@@ -48,7 +48,7 @@ arguments should they assist you in creating more complex, dynamic assertions.
 
 ## RoleInterface
 
-`Zend\Permissions\Rbac\RoleInterface` also received a number of changes,
+`Laminas\Permissions\Rbac\RoleInterface` also received a number of changes,
 including type hints and method name changes.
 
 ### Type hints

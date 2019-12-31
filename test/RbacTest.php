@@ -1,22 +1,23 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-permissions-rbac for the canonical source repository
- * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   https://github.com/zendframework/zend-permissions-rbac/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-permissions-rbac for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-permissions-rbac/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-permissions-rbac/blob/master/LICENSE.md New BSD License
  */
 
 declare(strict_types=1);
 
-namespace ZendTest\Permissions\Rbac;
+namespace LaminasTest\Permissions\Rbac;
 
+use Laminas\Permissions\Rbac;
+use Laminas\Permissions\Rbac\Exception;
 use PHPUnit\Framework\TestCase;
-use Zend\Permissions\Rbac;
-use Zend\Permissions\Rbac\Exception;
 
 class RbacTest extends TestCase
 {
     /**
-     * @var \Zend\Permissions\Rbac\Rbac
+     * @var \Laminas\Permissions\Rbac\Rbac
      */
     protected $rbac;
 
@@ -98,7 +99,7 @@ class RbacTest extends TestCase
     }
 
     /**
-     * @covers Zend\Permissions\Rbac\Rbac::hasRole()
+     * @covers Laminas\Permissions\Rbac\Rbac::hasRole()
      */
     public function testHasRole()
     {
@@ -142,7 +143,7 @@ class RbacTest extends TestCase
         $this->rbac->addRole('foo');
 
         $foo = $this->rbac->getRole('foo');
-        $this->assertInstanceOf('Zend\Permissions\Rbac\Role', $foo);
+        $this->assertInstanceOf('Laminas\Permissions\Rbac\Role', $foo);
     }
 
     public function testAddRoleFromClass()
@@ -153,7 +154,7 @@ class RbacTest extends TestCase
         $foo2 = $this->rbac->getRole('foo');
 
         $this->assertEquals($foo, $foo2);
-        $this->assertInstanceOf('Zend\Permissions\Rbac\Role', $foo2);
+        $this->assertInstanceOf('Laminas\Permissions\Rbac\Role', $foo2);
     }
 
     public function testAddRoleNotValid()
