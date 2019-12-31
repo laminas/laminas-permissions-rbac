@@ -1,16 +1,15 @@
 <?php
-/**
- * Zend Framework (http://framework.zend.com/).
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
-namespace Zend\Permissions\Rbac\Assertion;
 
-use Zend\Permissions\Rbac\AssertionInterface;
-use Zend\Permissions\Rbac\Exception\InvalidArgumentException;
-use Zend\Permissions\Rbac\Rbac;
+/**
+ * @see       https://github.com/laminas/laminas-permissions-rbac for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-permissions-rbac/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-permissions-rbac/blob/master/LICENSE.md New BSD License
+ */
+namespace Laminas\Permissions\Rbac\Assertion;
+
+use Laminas\Permissions\Rbac\AssertionInterface;
+use Laminas\Permissions\Rbac\Exception\InvalidArgumentException;
+use Laminas\Permissions\Rbac\Rbac;
 
 class CallbackAssertion implements AssertionInterface
 {

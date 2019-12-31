@@ -1,23 +1,22 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-permissions-rbac for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-permissions-rbac/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-permissions-rbac/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Permissions\Rbac;
+namespace LaminasTest\Permissions\Rbac;
 
-use Zend\Permissions\Rbac;
+use Laminas\Permissions\Rbac;
 
 /**
- * @group      Zend_Rbac
+ * @group      Laminas_Rbac
  */
 class RbacTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Zend\Permissions\Rbac\Rbac
+     * @var \Laminas\Permissions\Rbac\Rbac
      */
     protected $rbac;
 
@@ -83,7 +82,7 @@ class RbacTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Zend\Permissions\Rbac\Rbac::hasRole()
+     * @covers Laminas\Permissions\Rbac\Rbac::hasRole()
      */
     public function testHasRole()
     {
@@ -113,7 +112,7 @@ class RbacTest extends \PHPUnit_Framework_TestCase
         $this->rbac->addRole('foo');
 
         $foo = $this->rbac->getRole('foo');
-        $this->assertInstanceOf('Zend\Permissions\Rbac\Role', $foo);
+        $this->assertInstanceOf('Laminas\Permissions\Rbac\Role', $foo);
     }
 
     public function testAddRoleFromClass()
@@ -124,7 +123,7 @@ class RbacTest extends \PHPUnit_Framework_TestCase
         $foo2 = $this->rbac->getRole('foo');
 
         $this->assertEquals($foo, $foo2);
-        $this->assertInstanceOf('Zend\Permissions\Rbac\Role', $foo2);
+        $this->assertInstanceOf('Laminas\Permissions\Rbac\Role', $foo2);
     }
 
     public function testAddRoleWithParentsUsingRbac()
@@ -156,7 +155,7 @@ class RbacTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddCustomChildRole()
     {
-        $role = $this->getMockForAbstractClass('Zend\Permissions\Rbac\RoleInterface');
+        $role = $this->getMockForAbstractClass('Laminas\Permissions\Rbac\RoleInterface');
         $this->rbac->setCreateMissingRoles(true)->addRole($role, array('parent'));
 
         $role->expects($this->any())
