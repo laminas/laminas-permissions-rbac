@@ -1,6 +1,6 @@
 docs_dir: doc/book
 site_dir: doc/html
-pages:
+nav:
     - index.md
     - Intro: intro.md
     - Reference:
@@ -8,7 +8,6 @@ pages:
         - Examples: examples.md
         - Migration:
             - 'v2.X to v3.0': migration/to-v3-0.md
-site_name: zend-permissions-rbac
-site_description: zend-permissions-rbac
-repo_url: 'https://github.com/zendframework/zend-permissions-rbac'
-copyright: 'Copyright (c) 2016 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a>'
+site_name: laminas-permissions-rbac
+site_description: laminas-permissions-rbac
+repo_url: 'https://github.com/laminas/laminas-permissions-rbac'
