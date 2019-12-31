@@ -1,28 +1,26 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Permissions
+ * @see       https://github.com/laminas/laminas-permissions-rbac for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-permissions-rbac/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-permissions-rbac/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Permissions\Rbac;
+namespace LaminasTest\Permissions\Rbac;
 
-use Zend\Permissions\Rbac;
-use ZendTest\Permissions\Rbac\TestAsset;
+use Laminas\Permissions\Rbac;
+use LaminasTest\Permissions\Rbac\TestAsset;
 
 /**
- * @category   Zend
- * @package    Zend_Permissions
+ * @category   Laminas
+ * @package    Laminas_Permissions
  * @subpackage UnitTests
- * @group      Zend_Rbac
+ * @group      Laminas_Rbac
  */
 class RbacTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Zend\Permissions\Rbac\Rbac
+     * @var \Laminas\Permissions\Rbac\Rbac
      */
     protected $rbac;
 
@@ -104,7 +102,7 @@ class RbacTest extends \PHPUnit_Framework_TestCase
         $this->rbac->addRole('foo');
 
         $foo = $this->rbac->getRole('foo');
-        $this->assertInstanceOf('Zend\Permissions\Rbac\Role', $foo);
+        $this->assertInstanceOf('Laminas\Permissions\Rbac\Role', $foo);
     }
 
     public function testAddRoleFromClass()
@@ -115,7 +113,7 @@ class RbacTest extends \PHPUnit_Framework_TestCase
         $foo2 = $this->rbac->getRole('foo');
 
         $this->assertEquals($foo, $foo2);
-        $this->assertInstanceOf('Zend\Permissions\Rbac\Role', $foo2);
+        $this->assertInstanceOf('Laminas\Permissions\Rbac\Role', $foo2);
     }
 
     public function testAddRoleWithParentsUsingRbac()
