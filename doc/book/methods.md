@@ -1,6 +1,6 @@
 # Methods
 
-## `Zend\Permissions\Rbac\Role`
+## `Laminas\Permissions\Rbac\Role`
 
 The `Role` provides the base functionality required by the `RoleInterface`.
 
@@ -16,7 +16,7 @@ Method signature                                | Description
 `addParent(RoleInterface $parent) : Role`       | Add a parent role to the current instance.
 `getParents() : RoleInterface[]`                | Get all parent roles.
 
-## `Zend\Permissions\Rbac\AssertionInterface`
+## `Laminas\Permissions\Rbac\AssertionInterface`
 
 Custom assertions can be provided to `Rbac::isGranted()` (see below); such
 assertions are provided the `Rbac` instance on invocation, along with the role
@@ -26,7 +26,7 @@ Method signature                                                     | Descripti
 -------------------------------------------------------------------- | -----------
 `assert(Rbac $rbac, RoleInterface $role, string $permission) : bool` | Given an RBAC, a role, and a permission, determine if permission is granted.
 
-## `Zend\Permissions\Rbac\Rbac`
+## `Laminas\Permissions\Rbac\Rbac`
 
 `Rbac` is the object with which you will interact within your application in
 order to query for permissions.
