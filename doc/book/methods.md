@@ -1,6 +1,6 @@
 # Methods
 
-## `Zend\Permissions\Rbac\AbstractIterator`
+## `Laminas\Permissions\Rbac\AbstractIterator`
 
 The `AbstractIterator` is used as the basis for both the primary `Rbac` class
 and the `AbstractRole`.
@@ -15,7 +15,7 @@ Method signature                    | Description
 `rewind() : void`                   | Seek to the first item in the iterator.
 `valid() : bool`                    | Is the current index valid?
 
-## `Zend\Permissions\Rbac\AbstractRole`
+## `Laminas\Permissions\Rbac\AbstractRole`
 
 The `AbstractRole` provides the base functionality required by the
 `RoleInterface`, and is the foundation for the `Role` class.
@@ -30,7 +30,7 @@ Method signature                               | Description
 `addParent(RoleInterface $parent) : Role`      | Add a parent role to the current instance.
 `getParent() null|RoleInterface|array`         | Retrieve the current role's parent, or array of parents if more that one exists.
 
-## `Zend\Permissions\Rbac\AssertionInterface`
+## `Laminas\Permissions\Rbac\AssertionInterface`
 
 Custom assertions can be provided to `Rbac::isGranted()` (see below); such
 assertions are provided the `Rbac` instance on invocation.
@@ -39,7 +39,7 @@ Method signature            | Description
 --------------------------- | -----------
 `assert(Rbac $rbac) : bool` | Given an RBAC, determine if permission is granted.
 
-## `Zend\Permissions\Rbac\Rbac`
+## `Laminas\Permissions\Rbac\Rbac`
 
 `Rbac` is the object with which you will interact within your application in
 order to query for permissions. It extends `AbstractIterator`.
@@ -53,7 +53,7 @@ Method signature                                                            | De
 `setCreateMissingRoles(bool $flag) : void`                                  | Set the flag that determines whether or not `$parent` roles are added automatically if not present when calling `addRole()`.
 `isGranted(string|RoleInterface $role, string $permission, $assert = null)` | Determine if the role has the given permission. If `$assert` is provided and either an `AssertInterface` instance or callable, it will be queried before checking against the given role.
 
-## `Zend\Permissions\Rbac\Role`
+## `Laminas\Permissions\Rbac\Role`
 
 `Role` inherits from `AbstractRole` and `AbstractIterator`.
 
