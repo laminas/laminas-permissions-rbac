@@ -1,6 +1,6 @@
 # Introduction
 
-`zend-permissions-rbac` provides a lightweight [Role-Based Access Control](https://it.wikipedia.org/wiki/Role-based_access_control)
+`laminas-permissions-rbac` provides a lightweight [Role-Based Access Control](https://it.wikipedia.org/wiki/Role-based_access_control)
 (RBAC) implementation in PHP. RBAC differs from access control lists (ACL) by
 putting the emphasis on roles and their permissions rather than objects
 (resources).
@@ -19,8 +19,8 @@ Thus, RBAC has the following model:
 
 ## Roles
 
-To create a role, extend the abstract class `Zend\Permission\Rbac\AbstractRole`
-or use the default role class, `Zend\Permission\Rbac\Role`. You can instantiate
+To create a role, extend the abstract class `Laminas\Permission\Rbac\AbstractRole`
+or use the default role class, `Laminas\Permission\Rbac\Role`. You can instantiate
 a role and add it to the RBAC container or add a role directly using the RBAC
 container `addRole()` method.
 
