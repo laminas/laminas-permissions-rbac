@@ -1,14 +1,13 @@
 <?php
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
-namespace ZendTest\Permissions\Rbac\Assertion;
 
-use Zend\Permissions\Rbac;
+/**
+ * @see       https://github.com/laminas/laminas-permissions-rbac for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-permissions-rbac/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-permissions-rbac/blob/master/LICENSE.md New BSD License
+ */
+namespace LaminasTest\Permissions\Rbac\Assertion;
+
+use Laminas\Permissions\Rbac;
 
 class CallbackAssertionTest extends \PHPUnit_Framework_TestCase
 {
@@ -18,7 +17,7 @@ class CallbackAssertionTest extends \PHPUnit_Framework_TestCase
     public function testConstructorThrowsExceptionIfNotCallable()
     {
         $this->setExpectedException(
-            'Zend\Permissions\Rbac\Exception\InvalidArgumentException',
+            'Laminas\Permissions\Rbac\Exception\InvalidArgumentException',
             'Invalid callback provided; not callable'
         );
         new Rbac\Assertion\CallbackAssertion('I am not callable!');
