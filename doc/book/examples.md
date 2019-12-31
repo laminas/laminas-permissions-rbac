@@ -1,14 +1,14 @@
 # Examples
 
-The following is a list of common use-case examples for zend-permission-rbac.
+The following is a list of common use-case examples for laminas-permission-rbac.
 
 ## Roles
 
 Extending and adding roles via instantiation:
 
 ```php
-use Zend\Permissions\Rbac\Rbac;
-use Zend\Permissions\Rbac\AbstractRole;
+use Laminas\Permissions\Rbac\Rbac;
+use Laminas\Permissions\Rbac\AbstractRole;
 
 class MyRole extends AbstractRole
 {
@@ -24,10 +24,10 @@ $rbac->addRole($foo);
 var_dump($rbac->hasRole('foo')); // true
 ```
 
-Adding roles directly to RBAC with the default `Zend\Permission\Rbac\Role`:
+Adding roles directly to RBAC with the default `Laminas\Permission\Rbac\Role`:
 
 ```php
-use Zend\Permissions\Rbac\Rbac;
+use Laminas\Permissions\Rbac\Rbac;
 
 $rbac = new Rbac();
 $rbac->addRole('foo');
@@ -38,8 +38,8 @@ var_dump($rbac->hasRole('foo')); // true
 Handling roles with children:
 
 ```php
-use Zend\Permissions\Rbac\Rbac;
-use Zend\Permissions\Rbac\Role;
+use Laminas\Permissions\Rbac\Rbac;
+use Laminas\Permissions\Rbac\Role;
 
 $rbac = new Rbac();
 $foo  = new Role('foo');
@@ -57,8 +57,8 @@ $rbac->addRole('baz', ['out', 'of', 'roles']); // create several parents of baz
 ## Permissions
 
 ```php
-use Zend\Permissions\Rbac\Rbac;
-use Zend\Permissions\Rbac\Role;
+use Laminas\Permissions\Rbac\Rbac;
+use Laminas\Permissions\Rbac\Role;
 
 $rbac = new Rbac();
 $foo  = new Role('foo');
@@ -77,12 +77,12 @@ $rbac->isGranted('foo', 'baz'); // true
 ## Dynamic Assertions
 
 Checking permission using `isGranted()` with a class implementing
-`Zend\Permissions\Rbac\AssertionInterface`:
+`Laminas\Permissions\Rbac\AssertionInterface`:
 
 ```php
 use App\Model\Article;
-use Zend\Permissions\Rbac\AssertionInterface;
-use Zend\Permissions\Rbac\Rbac;
+use Laminas\Permissions\Rbac\AssertionInterface;
+use Laminas\Permissions\Rbac\Rbac;
 
 class AssertUserRoleMatches implements AssertionInterface
 {

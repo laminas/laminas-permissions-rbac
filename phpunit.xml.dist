@@ -4,7 +4,7 @@
          bootstrap="./vendor/autoload.php"
          colors="true">
     <testsuites>
-        <testsuite name="zend-permissions-rbac Test Suite">
+        <testsuite name="laminas-permissions-rbac Test Suite">
             <directory>./test/</directory>
         </testsuite>
     </testsuites>
