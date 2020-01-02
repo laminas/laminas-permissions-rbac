@@ -2,8 +2,12 @@ docs_dir: doc/book
 site_dir: doc/html
 nav:
     - index.md
-    - { Intro: intro.md }
-    - { Reference: [{ Methods: methods.md }, { Examples: examples.md }, { Migration: [{ 'v2.X to v3.0': migration/to-v3-0.md }] }] }
+    - Intro: intro.md
+    - Reference:
+        - Methods: methods.md
+        - Examples: examples.md
+        - Migration:
+            - 'v2.X to v3.0': migration/to-v3-0.md
 site_name: laminas-permissions-rbac
 site_description: laminas-permissions-rbac
 repo_url: 'https://github.com/laminas/laminas-permissions-rbac'
