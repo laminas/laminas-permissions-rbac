@@ -20,7 +20,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+            <img src="../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -36,13 +36,17 @@
             
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            All Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="https://docs.laminas.dev/components">Components</a>
+                            <a class="dropdown-item" href="https://docs.mezzio.dev/">Mezzio</a>
+                            <a class="dropdown-item" href="https://api-tools.getlaminas.org/docs">API Tools</a>
+                            <a class="dropdown-item" href="https://docs.laminas.dev/mvc">MVC</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
@@ -243,138 +247,132 @@
 <p>The following is a list of common use-case examples for laminas-permission-rbac.</p>
 <h2 id="roles">Roles</h2>
 <p>Extending and adding roles via instantiation:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Permissions\Rbac\Rbac;</span>
-<span class=x>use Laminas\Permissions\Rbac\AbstractRole;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Permissions\Rbac\Rbac;
+use Laminas\Permissions\Rbac\AbstractRole;
 
-<span class=x>class MyRole extends AbstractRole</span>
-<span class=x>{</span>
-<span class=x>    // .. implementation</span>
-<span class=x>}</span>
+class MyRole extends AbstractRole
+{
+    // .. implementation
+}
 
-<span class=x>// Creating roles manually</span>
-<span class=x>$foo  = new MyRole(&#39;foo&#39;);</span>
+// Creating roles manually
+$foo  = new MyRole('foo');
 
-<span class=x>$rbac = new Rbac();</span>
-<span class=x>$rbac-&gt;addRole($foo);</span>
+$rbac = new Rbac();
+$rbac-&gt;addRole($foo);
 
-<span class=x>var_dump($rbac-&gt;hasRole(&#39;foo&#39;)); // true</span>
-</pre></div></p>
+var_dump($rbac-&gt;hasRole('foo')); // true</code></pre>
 <p>Adding roles directly to RBAC with the default <code>Laminas\Permission\Rbac\Role</code>:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Permissions\Rbac\Rbac;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Permissions\Rbac\Rbac;
 
-<span class=x>$rbac = new Rbac();</span>
-<span class=x>$rbac-&gt;addRole(&#39;foo&#39;);</span>
+$rbac = new Rbac();
+$rbac-&gt;addRole('foo');
 
-<span class=x>var_dump($rbac-&gt;hasRole(&#39;foo&#39;)); // true</span>
-</pre></div></p>
+var_dump($rbac-&gt;hasRole('foo')); // true</code></pre>
 <p>Handling roles with children:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Permissions\Rbac\Rbac;</span>
-<span class=x>use Laminas\Permissions\Rbac\Role;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Permissions\Rbac\Rbac;
+use Laminas\Permissions\Rbac\Role;
 
-<span class=x>$rbac = new Rbac();</span>
-<span class=x>$foo  = new Role(&#39;foo&#39;);</span>
-<span class=x>$bar  = new Role(&#39;bar&#39;);</span>
+$rbac = new Rbac();
+$foo  = new Role('foo');
+$bar  = new Role('bar');
 
-<span class=x>// 1 - Add a role with child role directly with instantiated classes.</span>
-<span class=x>$foo-&gt;addChild($bar);</span>
-<span class=x>$rbac-&gt;addRole($foo);</span>
+// 1 - Add a role with child role directly with instantiated classes.
+$foo-&gt;addChild($bar);
+$rbac-&gt;addRole($foo);
 
-<span class=x>// 2 - Same as one, only via rbac container.</span>
-<span class=x>$rbac-&gt;addRole(&#39;boo&#39;, &#39;baz&#39;); // baz is a parent of boo</span>
-<span class=x>$rbac-&gt;addRole(&#39;baz&#39;, [&#39;out&#39;, &#39;of&#39;, &#39;roles&#39;]); // create several parents of baz</span>
-</pre></div></p>
+// 2 - Same as one, only via rbac container.
+$rbac-&gt;addRole('boo', 'baz'); // baz is a parent of boo
+$rbac-&gt;addRole('baz', ['out', 'of', 'roles']); // create several parents of baz</code></pre>
 <h2 id="permissions">Permissions</h2>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Permissions\Rbac\Rbac;</span>
-<span class=x>use Laminas\Permissions\Rbac\Role;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Permissions\Rbac\Rbac;
+use Laminas\Permissions\Rbac\Role;
 
-<span class=x>$rbac = new Rbac();</span>
-<span class=x>$foo  = new Role(&#39;foo&#39;);</span>
-<span class=x>$foo-&gt;addPermission(&#39;bar&#39;);</span>
+$rbac = new Rbac();
+$foo  = new Role('foo');
+$foo-&gt;addPermission('bar');
 
-<span class=x>var_dump($foo-&gt;hasPermission(&#39;bar&#39;)); // true</span>
+var_dump($foo-&gt;hasPermission('bar')); // true
 
-<span class=x>$rbac-&gt;addRole($foo);</span>
-<span class=x>$rbac-&gt;isGranted(&#39;foo&#39;, &#39;bar&#39;); // true</span>
-<span class=x>$rbac-&gt;isGranted(&#39;foo&#39;, &#39;baz&#39;); // false</span>
+$rbac-&gt;addRole($foo);
+$rbac-&gt;isGranted('foo', 'bar'); // true
+$rbac-&gt;isGranted('foo', 'baz'); // false
 
-<span class=x>$rbac-&gt;getRole(&#39;foo&#39;)-&gt;addPermission(&#39;baz&#39;);</span>
-<span class=x>$rbac-&gt;isGranted(&#39;foo&#39;, &#39;baz&#39;); // true</span>
-</pre></div></p>
+$rbac-&gt;getRole('foo')-&gt;addPermission('baz');
+$rbac-&gt;isGranted('foo', 'baz'); // true</code></pre>
 <h2 id="dynamic-assertions">Dynamic Assertions</h2>
 <p>Checking permission using <code>isGranted()</code> with a class implementing
 <code>Laminas\Permissions\Rbac\AssertionInterface</code>:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use App\Model\Article;</span>
-<span class=x>use Laminas\Permissions\Rbac\AssertionInterface;</span>
-<span class=x>use Laminas\Permissions\Rbac\Rbac;</span>
+<pre class=codehilite><code class=language-php>use App\Model\Article;
+use Laminas\Permissions\Rbac\AssertionInterface;
+use Laminas\Permissions\Rbac\Rbac;
 
-<span class=x>class AssertUserRoleMatches implements AssertionInterface</span>
-<span class=x>{</span>
-<span class=x>    protected $userId;</span>
-<span class=x>    protected $article;</span>
+class AssertUserRoleMatches implements AssertionInterface
+{
+    protected $userId;
+    protected $article;
 
-<span class=x>    public function __construct(string $userId)</span>
-<span class=x>    {</span>
-<span class=x>        $this-&gt;userId = $userId;</span>
-<span class=x>    }</span>
+    public function __construct(string $userId)
+    {
+        $this-&gt;userId = $userId;
+    }
 
-<span class=x>    public function setArticle(Article $article)</span>
-<span class=x>    {</span>
-<span class=x>        $this-&gt;article = $article;</span>
-<span class=x>    }</span>
+    public function setArticle(Article $article)
+    {
+        $this-&gt;article = $article;
+    }
 
-<span class=x>    public function assert(Rbac $rbac, RoleInterface $role = null, string $permission = null)</span>
-<span class=x>    {</span>
-<span class=x>        if (! $this-&gt;article) {</span>
-<span class=x>            return false;</span>
-<span class=x>        }</span>
-<span class=x>        return ($this-&gt;userId === $this-&gt;article-&gt;getUserId());</span>
-<span class=x>    }</span>
-<span class=x>}</span>
+    public function assert(Rbac $rbac, RoleInterface $role = null, string $permission = null)
+    {
+        if (! $this-&gt;article) {
+            return false;
+        }
+        return ($this-&gt;userId === $this-&gt;article-&gt;getUserId());
+    }
+}
 
-<span class=x>// User is assigned the foo role with id 5</span>
-<span class=x>// News article belongs to userId 5</span>
-<span class=x>// Jazz article belongs to userId 6</span>
+// User is assigned the foo role with id 5
+// News article belongs to userId 5
+// Jazz article belongs to userId 6
 
-<span class=x>$rbac = new Rbac();</span>
-<span class=x>$user = $mySessionObject-&gt;getUser();</span>
-<span class=x>$news = $articleService-&gt;getArticle(5);</span>
-<span class=x>$jazz = $articleService-&gt;getArticle(6);</span>
+$rbac = new Rbac();
+$user = $mySessionObject-&gt;getUser();
+$news = $articleService-&gt;getArticle(5);
+$jazz = $articleService-&gt;getArticle(6);
 
-<span class=x>$rbac-&gt;addRole($user-&gt;getRole());</span>
-<span class=x>$rbac-&gt;getRole($user-&gt;getRole())-&gt;addPermission(&#39;edit.article&#39;);</span>
+$rbac-&gt;addRole($user-&gt;getRole());
+$rbac-&gt;getRole($user-&gt;getRole())-&gt;addPermission('edit.article');
 
-<span class=x>$assertion = new AssertUserIdMatches($user-&gt;getId());</span>
-<span class=x>$assertion-&gt;setArticle($news);</span>
+$assertion = new AssertUserIdMatches($user-&gt;getId());
+$assertion-&gt;setArticle($news);
 
-<span class=x>// true always - bad!</span>
-<span class=x>if ($rbac-&gt;isGranted($user-&gt;getRole(), &#39;edit.article&#39;)) {</span>
-<span class=x>    // hacks another user&#39;s article</span>
-<span class=x>}</span>
+// true always - bad!
+if ($rbac-&gt;isGranted($user-&gt;getRole(), 'edit.article')) {
+    // hacks another user's article
+}
 
-<span class=x>// true for user id 5, because he belongs to write group and user id matches</span>
-<span class=x>if ($rbac-&gt;isGranted($user-&gt;getRole(), &#39;edit.article&#39;, $assertion)) {</span>
-<span class=x>    // edits his own article</span>
-<span class=x>}</span>
+// true for user id 5, because he belongs to write group and user id matches
+if ($rbac-&gt;isGranted($user-&gt;getRole(), 'edit.article', $assertion)) {
+    // edits his own article
+}
 
-<span class=x>$assertion-&gt;setArticle($jazz);</span>
+$assertion-&gt;setArticle($jazz);
 
-<span class=x>// false for user id 5</span>
-<span class=x>if ($rbac-&gt;isGranted($user-&gt;getRole(), &#39;edit.article&#39;, $assertion)) {</span>
-<span class=x>    // can not edit another user&#39;s article</span>
-<span class=x>}</span>
-</pre></div></p>
+// false for user id 5
+if ($rbac-&gt;isGranted($user-&gt;getRole(), 'edit.article', $assertion)) {
+    // can not edit another user's article
+}</code></pre>
 <p>Performing the same as above with a closure:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>// assume same variables from previous example</span>
+<pre class=codehilite><code class=language-php>// assume same variables from previous example
 
-<span class=x>$assertion = function($rbac) use ($user, $news) {</span>
-<span class=x>    return ($user-&gt;getId() === $news-&gt;getUserId());</span>
-<span class=x>};</span>
+$assertion = function($rbac) use ($user, $news) {
+    return ($user-&gt;getId() === $news-&gt;getUserId());
+};
 
-<span class=x>// true</span>
-<span class=x>if ($rbac-&gt;isGranted($user-&gt;getRole(), &#39;edit.article&#39;, $assertion)) {</span>
-<span class=x>    // edits his own article</span>
-<span class=x>}</span>
-</pre></div></p>
+// true
+if ($rbac-&gt;isGranted($user-&gt;getRole(), 'edit.article', $assertion)) {
+    // edits his own article
+}</code></pre>
 
 
 
@@ -517,9 +515,10 @@
             <div class="col-md-7 offset-md-2">
                 <h5>Laminas</h5>
                 <ul>
-                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
-                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
-                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                    <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
+                    <li>Laminas Components and MVC <a href="https://docs.laminas.dev/">Components and MVC for enterprise applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 middleware in minutes</a></li>
+                    <li>Laminas API Tools <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
                 </ul>
             </div>
         </div>
@@ -556,7 +555,7 @@
                 <h4 class="footer__headline">License</h4>
                 <p>
                     Code licensed under <a
-                        href="https://github.com/laminas/laminas-permissions-rbac//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                        href="https://github.com/laminas/laminas-permissions-rbac/blob/master/LICENSE.md">BSD 3-Clause</a>.
                 </p>
             </div>
 
@@ -565,8 +564,8 @@
                 <h4 class="footer__headline">Copyright</h4>
                 <p>
                     <!--Built with love by the Laminas team with the help of our
-                    <a href="https://github.com/laminas/laminas-permissions-rbac//graphs/contributors">contributors</a>.<br>-->
-                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                    <a href="https://github.com/laminas/laminas-permissions-rbac/graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2020 by <a href="https://getlaminas.org/">The Laminas Project</a>.
                 </p>
             </div>
         </div>
