@@ -13,4 +13,3 @@ site_description: laminas-permissions-rbac
 repo_url: 'https://github.com/laminas/laminas-permissions-rbac'
 extra:
     project: Components
-    project_url: 'https://docs.laminas.dev'
