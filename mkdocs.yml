@@ -1,7 +1,7 @@
 docs_dir: doc/book
 site_dir: doc/html
 nav:
-    - index.md
+    - Home: index.md
     - Intro: intro.md
     - Reference:
         - Methods: methods.md
@@ -13,4 +13,3 @@ site_description: laminas-permissions-rbac
 repo_url: 'https://github.com/laminas/laminas-permissions-rbac'
 extra:
     project: Components
-    project_url: 'https://docs.laminas.dev'
