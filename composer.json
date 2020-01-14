@@ -4,7 +4,7 @@
     "license": "BSD-3-Clause",
     "keywords": [
         "laminas",
-        "laminas-permssions-rbac",
+        "laminas-permissions-rbac",
         "rbac",
         "authorization"
     ],
