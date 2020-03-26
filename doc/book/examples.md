@@ -120,7 +120,7 @@ $jazz = $articleService->getArticle(6);
 $rbac->addRole($user->getRole());
 $rbac->getRole($user->getRole())->addPermission('edit.article');
 
-$assertion = new AssertUserIdMatches($user->getId());
+$assertion = new AssertUserRoleMatches($user->getId());
 $assertion->setArticle($news);
 
 // true always - bad!
