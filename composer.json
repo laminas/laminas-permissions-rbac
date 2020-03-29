@@ -55,6 +55,6 @@
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
     },
     "replace": {
-        "zendframework/zend-permissions-rbac": "self.version"
+        "zendframework/zend-permissions-rbac": "^3.0.2"
     }
 }
