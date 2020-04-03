@@ -306,7 +306,7 @@
 <p>The following is a list of common use-case examples for laminas-permission-rbac.</p>
 <h2 id="roles">Roles</h2>
 <p>Extending and adding roles via instantiation:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Permissions\Rbac\Rbac;
+<pre class="highlight"><code class="language-php">use Laminas\Permissions\Rbac\Rbac;
 use Laminas\Permissions\Rbac\AbstractRole;
 
 class MyRole extends AbstractRole
@@ -321,15 +321,17 @@ $rbac = new Rbac();
 $rbac-&gt;addRole($foo);
 
 var_dump($rbac-&gt;hasRole('foo')); // true</code></pre>
+
 <p>Adding roles directly to RBAC with the default <code>Laminas\Permission\Rbac\Role</code>:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Permissions\Rbac\Rbac;
+<pre class="highlight"><code class="language-php">use Laminas\Permissions\Rbac\Rbac;
 
 $rbac = new Rbac();
 $rbac-&gt;addRole('foo');
 
 var_dump($rbac-&gt;hasRole('foo')); // true</code></pre>
+
 <p>Handling roles with children:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Permissions\Rbac\Rbac;
+<pre class="highlight"><code class="language-php">use Laminas\Permissions\Rbac\Rbac;
 use Laminas\Permissions\Rbac\Role;
 
 $rbac = new Rbac();
@@ -343,8 +345,9 @@ $rbac-&gt;addRole($foo);
 // 2 - Same as one, only via rbac container.
 $rbac-&gt;addRole('boo', 'baz'); // baz is a parent of boo
 $rbac-&gt;addRole('baz', ['out', 'of', 'roles']); // create several parents of baz</code></pre>
+
 <h2 id="permissions">Permissions</h2>
-<pre class=codehilite><code class=language-php>use Laminas\Permissions\Rbac\Rbac;
+<pre class="highlight"><code class="language-php">use Laminas\Permissions\Rbac\Rbac;
 use Laminas\Permissions\Rbac\Role;
 
 $rbac = new Rbac();
@@ -359,10 +362,11 @@ $rbac-&gt;isGranted('foo', 'baz'); // false
 
 $rbac-&gt;getRole('foo')-&gt;addPermission('baz');
 $rbac-&gt;isGranted('foo', 'baz'); // true</code></pre>
+
 <h2 id="dynamic-assertions">Dynamic Assertions</h2>
 <p>Checking permission using <code>isGranted()</code> with a class implementing
 <code>Laminas\Permissions\Rbac\AssertionInterface</code>:</p>
-<pre class=codehilite><code class=language-php>use App\Model\Article;
+<pre class="highlight"><code class="language-php">use App\Model\Article;
 use Laminas\Permissions\Rbac\AssertionInterface;
 use Laminas\Permissions\Rbac\Rbac;
 
@@ -421,8 +425,9 @@ $assertion-&gt;setArticle($jazz);
 if ($rbac-&gt;isGranted($user-&gt;getRole(), 'edit.article', $assertion)) {
     // can not edit another user's article
 }</code></pre>
+
 <p>Performing the same as above with a closure:</p>
-<pre class=codehilite><code class=language-php>// assume same variables from previous example
+<pre class="highlight"><code class="language-php">// assume same variables from previous example
 
 $assertion = function($rbac) use ($user, $news) {
     return ($user-&gt;getId() === $news-&gt;getUserId());

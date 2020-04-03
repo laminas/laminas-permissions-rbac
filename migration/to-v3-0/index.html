@@ -318,23 +318,25 @@ document details the changes</p>
 <p>The primary change is the <code>Laminas\Permissions\Rbac\AssertionInterface::assert()</code>
 method definition.</p>
 <p>The new <code>assert</code> method has the following signature:</p>
-<pre class=codehilite><code class=language-php>namespace Laminas\Permissions\Rbac;
+<pre class="highlight"><code class="language-php">namespace Laminas\Permissions\Rbac;
 
 public function assert(
     Rbac $rbac,
     RoleInterface $role,
     string $permission
 ) : bool</code></pre>
+
 <p>The version 2 releases defined the method such that it only accepted a single
 parameter, <code>Rbac $rbac</code>. Version 3 adds the <code>$role</code> and <code>$permission</code>
 parameters. This simplifies implementation of dynamic assertions using the role
 and the permission information.</p>
 <p>For instance, imagine you want to disable a specific permission <code>foo</code> for an
 <code>admin</code> role; you can implement that as follows:</p>
-<pre class=codehilite><code class=language-php>public function assert(Rbac $rbac, RoleInterface $role, string $permission) : bool
+<pre class="highlight"><code class="language-php">public function assert(Rbac $rbac, RoleInterface $role, string $permission) : bool
 {
     return ! ($permission === 'foo' &amp;&amp; $role-&gt;getName() === 'admin');
 }</code></pre>
+
 <p>If you were previously implementing <code>AssertionInterface</code>, you will need to
 update the <code>assert()</code> signature to match the changes in version 3.</p>
 <p>If you were creating assertions as PHP callables, you may continue to use the
