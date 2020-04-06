@@ -307,9 +307,9 @@
 <h2 id="roles">Roles</h2>
 <p>Extending and adding roles via instantiation:</p>
 <pre class="highlight"><code class="language-php">use Laminas\Permissions\Rbac\Rbac;
-use Laminas\Permissions\Rbac\AbstractRole;
+use Laminas\Permissions\Rbac\Role;
 
-class MyRole extends AbstractRole
+class MyRole extends Role
 {
     // .. implementation
 }
@@ -369,6 +369,7 @@ $rbac-&gt;isGranted('foo', 'baz'); // true</code></pre>
 <pre class="highlight"><code class="language-php">use App\Model\Article;
 use Laminas\Permissions\Rbac\AssertionInterface;
 use Laminas\Permissions\Rbac\Rbac;
+use Laminas\Permissions\Rbac\RoleInterface;
 
 class AssertUserRoleMatches implements AssertionInterface
 {
@@ -385,11 +386,12 @@ class AssertUserRoleMatches implements AssertionInterface
         $this-&gt;article = $article;
     }
 
-    public function assert(Rbac $rbac, RoleInterface $role = null, string $permission = null)
+    public function assert(Rbac $rbac, RoleInterface $role = null, string $permission = null) : bool
     {
         if (! $this-&gt;article) {
             return false;
         }
+
         return ($this-&gt;userId === $this-&gt;article-&gt;getUserId());
     }
 }
@@ -406,7 +408,7 @@ $jazz = $articleService-&gt;getArticle(6);
 $rbac-&gt;addRole($user-&gt;getRole());
 $rbac-&gt;getRole($user-&gt;getRole())-&gt;addPermission('edit.article');
 
-$assertion = new AssertUserIdMatches($user-&gt;getId());
+$assertion = new AssertUserRoleMatches($user-&gt;getId());
 $assertion-&gt;setArticle($news);
 
 // true always - bad!
@@ -429,8 +431,8 @@ if ($rbac-&gt;isGranted($user-&gt;getRole(), 'edit.article', $assertion)) {
 <p>Performing the same as above with a closure:</p>
 <pre class="highlight"><code class="language-php">// assume same variables from previous example
 
-$assertion = function($rbac) use ($user, $news) {
-    return ($user-&gt;getId() === $news-&gt;getUserId());
+$assertion = function ($rbac) use ($user, $news) {
+    return $user-&gt;getId() === $news-&gt;getUserId();
 };
 
 // true
@@ -470,7 +472,7 @@ if ($rbac-&gt;isGranted($user-&gt;getRole(), 'edit.article', $assertion)) {
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/laminas/laminas-permissions-rbac/edit/master/doc/book/examples.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/laminas/laminas-permissions-rbac/edit/master/docs/book/examples.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>
