@@ -8,9 +8,9 @@ Extending and adding roles via instantiation:
 
 ```php
 use Laminas\Permissions\Rbac\Rbac;
-use Laminas\Permissions\Rbac\AbstractRole;
+use Laminas\Permissions\Rbac\Role;
 
-class MyRole extends AbstractRole
+class MyRole extends Role
 {
     // .. implementation
 }
@@ -83,6 +83,7 @@ Checking permission using `isGranted()` with a class implementing
 use App\Model\Article;
 use Laminas\Permissions\Rbac\AssertionInterface;
 use Laminas\Permissions\Rbac\Rbac;
+use Laminas\Permissions\Rbac\RoleInterface;
 
 class AssertUserRoleMatches implements AssertionInterface
 {
@@ -99,11 +100,12 @@ class AssertUserRoleMatches implements AssertionInterface
         $this->article = $article;
     }
 
-    public function assert(Rbac $rbac, RoleInterface $role = null, string $permission = null)
+    public function assert(Rbac $rbac, RoleInterface $role = null, string $permission = null) : bool
     {
         if (! $this->article) {
             return false;
         }
+
         return ($this->userId === $this->article->getUserId());
     }
 }
@@ -146,8 +148,8 @@ Performing the same as above with a closure:
 ```php
 // assume same variables from previous example
 
-$assertion = function($rbac) use ($user, $news) {
-    return ($user->getId() === $news->getUserId());
+$assertion = function ($rbac) use ($user, $news) {
+    return $user->getId() === $news->getUserId();
 };
 
 // true
