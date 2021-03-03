@@ -21,7 +21,7 @@ class RbacTest extends TestCase
      */
     protected $rbac;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->rbac = new Rbac\Rbac();
     }
