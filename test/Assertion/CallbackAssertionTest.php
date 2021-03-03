@@ -26,8 +26,11 @@ class CallbackAssertionTest extends TestCase
         $callback = function () {
         };
         $assert = new Rbac\Assertion\CallbackAssertion($callback);
-        $this->assertAttributeNotSame($callback, 'callback', $assert);
-        $this->assertAttributeInstanceOf(Closure::class, 'callback', $assert);
+        $self = $this;
+        (function () use ($self, $callback) {
+            $self->assertNotSame($callback, $this->callback);
+            $self->assertInstanceOf(Closure::class, $this->callback);
+        })->call($assert);
     }
 
     /**
