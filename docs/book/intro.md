@@ -19,7 +19,7 @@ Thus, RBAC has the following model:
 
 ## Roles
 
-To create a role, extend the abstract class `Laminas\Permission\Rbac\AbstractRole`
+To create a role, create a new class that implements `Laminas\Permission\Rbac\RoleInterface`
 or use the default role class, `Laminas\Permission\Rbac\Role`. You can instantiate
 a role and add it to the RBAC container or add a role directly using the RBAC
 container `addRole()` method.
