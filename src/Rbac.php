@@ -122,6 +122,7 @@ class Rbac
      * Determines if access is granted by checking the role and child roles for permission.
      *
      * @param RoleInterface|string $role
+     * @param string $permission
      * @param null|AssertionInterface|Callable $assertion
      * @throws Exception\InvalidArgumentException if the role is not found.
      * @throws Exception\InvalidArgumentException if the assertion is an invalid type.
