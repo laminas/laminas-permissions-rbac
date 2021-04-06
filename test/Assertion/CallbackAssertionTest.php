@@ -14,6 +14,7 @@ use Closure;
 use Laminas\Permissions\Rbac;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
+use ReflectionProperty;
 use stdClass;
 
 class CallbackAssertionTest extends TestCase
@@ -21,22 +22,25 @@ class CallbackAssertionTest extends TestCase
     /**
      * Ensures callback is set in object
      */
-    public function testCallbackIsDecoratedAsClosure()
+    public function testCallbackIsDecoratedAsClosure(): void
     {
-        $callback = function () {
+        $callback = function (): void {
         };
         $assert = new Rbac\Assertion\CallbackAssertion($callback);
-        $self = $this;
-        (function () use ($self, $callback) {
-            $self->assertNotSame($callback, $this->callback);
-            $self->assertInstanceOf(Closure::class, $this->callback);
-        })->call($assert);
+        $internalCallbackProperty = $this->extractPrivatePropertyValue('callback', $assert);
+        $this->assertNotSame(
+            $callback,
+            $internalCallbackProperty
+        );
+        $this->assertInstanceOf(Closure::class, $internalCallbackProperty);
     }
 
     /**
      * Ensures assert method provides callback with rbac as argument
+     *
+     * @return void
      */
-    public function testAssertMethodPassRbacToCallback()
+    public function testAssertMethodPassRbacToCallback(): void
     {
         $rbac = new Rbac\Rbac();
         $assert = new Rbac\Assertion\CallbackAssertion(function ($rbacArg) use ($rbac) {
@@ -51,14 +55,21 @@ class CallbackAssertionTest extends TestCase
 
     /**
      * Ensures assert method returns callback's function value
+     *
+     * @return void
      */
-    public function testAssertMethod()
+    public function testAssertMethod(): void
     {
         $rbac = new Rbac\Rbac();
         $foo  = new Rbac\Role('foo');
         $bar  = new Rbac\Role('bar');
 
-        $assertRoleMatch = function ($role) {
+        $assertRoleMatch = /**
+         * @return \Closure
+         *
+         * @psalm-return \Closure(Rbac\RoleInterface): bool
+         */
+        function (Rbac\RoleInterface $role): \Closure {
             return function ($rbac) use ($role) {
                 return $role->getName() === 'foo';
             };
@@ -78,21 +89,24 @@ class CallbackAssertionTest extends TestCase
         $this->assertTrue($rbac->isGranted($foo, 'can.foo', $roleMatch));
     }
 
-    public function testAssertWithCallable()
+    public function testAssertWithCallable(): void
     {
         $rbac = new Rbac\Rbac();
         $foo  = new Rbac\Role('foo');
         $foo->addPermission('can.foo');
         $rbac->addRole($foo);
 
-        $callable = function ($rbac, $permission, $role) {
+        $callable = /**
+         * @return true
+         */
+        function ($rbac, $permission, $role): bool {
             return true;
         };
         $this->assertTrue($rbac->isGranted('foo', 'can.foo', $callable));
         $this->assertFalse($rbac->isGranted('foo', 'can.bar', $callable));
     }
 
-    public function testAssertWithInvalidValue()
+    public function testAssertWithInvalidValue(): void
     {
         $rbac = new Rbac\Rbac();
         $foo  = new Rbac\Role('foo');
@@ -102,5 +116,15 @@ class CallbackAssertionTest extends TestCase
         $callable = new stdClass();
         $this->expectException(Rbac\Exception\InvalidArgumentException::class);
         $rbac->isGranted('foo', 'can.foo', $callable);
+    }
+
+    /**
+     * @return mixed
+     */
+    private function extractPrivatePropertyValue(string $propertyName, Rbac\Assertion\CallbackAssertion $assert)
+    {
+        $reflectionProperty = new ReflectionProperty($assert, $propertyName);
+        $reflectionProperty->setAccessible(true);
+        return $reflectionProperty->getValue($assert);
     }
 }
