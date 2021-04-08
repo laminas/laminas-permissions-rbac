@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="4.7.0@d4377c0baf3ffbf0b1ec6998e8d1be2a40971005">
+  <file src="src/Assertion/CallbackAssertion.php">
+    <MixedInferredReturnType occurrences="2">
+      <code>bool</code>
+      <code>bool</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="2">
+      <code>$callback($rbac, $role, $permission)</code>
+      <code>($this-&gt;callback)($rbac, $role, $permission)</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="src/Rbac.php">
+    <DocblockTypeContradiction occurrences="2">
+      <code>! is_string($role) &amp;&amp; ! $role instanceof RoleInterface</code>
+      <code>$role instanceof RoleInterface</code>
+    </DocblockTypeContradiction>
+    <RedundantCondition occurrences="2">
+      <code>$result</code>
+      <code>$result</code>
+    </RedundantCondition>
+  </file>
+  <file src="src/Role.php">
+    <UndefinedInterfaceMethod occurrences="3">
+      <code>getPermissions</code>
+      <code>hasAncestor</code>
+      <code>hasDescendant</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="test/Assertion/CallbackAssertionTest.php">
+    <DeprecatedMethod occurrences="2">
+      <code>assertAttributeInstanceOf</code>
+      <code>assertAttributeNotSame</code>
+    </DeprecatedMethod>
+    <InvalidArgument occurrences="1">
+      <code>$callable</code>
+    </InvalidArgument>
+    <MissingClosureParamType occurrences="5">
+      <code>$permission</code>
+      <code>$rbac</code>
+      <code>$rbac</code>
+      <code>$rbacArg</code>
+      <code>$role</code>
+      <code>$role</code>
+    </MissingClosureParamType>
+    <UnusedClosureParam occurrences="4">
+      <code>$permission</code>
+      <code>$rbac</code>
+      <code>$rbac</code>
+      <code>$role</code>
+    </UnusedClosureParam>
+  </file>
+  <file src="test/RbacTest.php">
+    <ArgumentTypeCoercion occurrences="2">
+      <code>'Laminas\Permissions\Rbac\Role'</code>
+      <code>'Laminas\Permissions\Rbac\Role'</code>
+    </ArgumentTypeCoercion>
+    <InvalidArgument occurrences="4">
+      <code>$foo</code>
+      <code>$role</code>
+      <code>$role</code>
+      <code>'parent'</code>
+    </InvalidArgument>
+    <TooManyArguments occurrences="2">
+      <code>new TestAsset\RoleMustMatchAssertion($bar)</code>
+      <code>new TestAsset\RoleMustMatchAssertion($foo)</code>
+    </TooManyArguments>
+  </file>
+  <file src="test/RoleTest.php">
+    <InvalidArgument occurrences="1">
+      <code>$perm</code>
+    </InvalidArgument>
+    <InvalidCast occurrences="1">
+      <code>$perm</code>
+    </InvalidCast>
+  </file>
+</files>

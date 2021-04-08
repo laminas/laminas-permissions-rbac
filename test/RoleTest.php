@@ -17,19 +17,19 @@ use PHPUnit\Framework\TestCase;
 
 class RoleTest extends TestCase
 {
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $foo = new Role('foo');
         $this->assertInstanceOf(RoleInterface::class, $foo);
     }
 
-    public function testGetName()
+    public function testGetName(): void
     {
         $foo = new Role('foo');
         $this->assertEquals('foo', $foo->getName());
     }
 
-    public function testAddPermission()
+    public function testAddPermission(): void
     {
         $foo = new Role('foo');
         $foo->addPermission('bar');
@@ -39,7 +39,7 @@ class RoleTest extends TestCase
         $this->assertTrue($foo->hasPermission('baz'));
     }
 
-    public function testInvalidPermission()
+    public function testInvalidPermission(): void
     {
         $perm = new \stdClass();
         $foo = new Role('foo');
@@ -47,7 +47,7 @@ class RoleTest extends TestCase
         $foo->addPermission($perm);
     }
 
-    public function testAddChild()
+    public function testAddChild(): void
     {
         $foo = new Role('foo');
         $bar = new Role('bar');
@@ -59,7 +59,7 @@ class RoleTest extends TestCase
         $this->assertEquals([$bar, $baz], $foo->getChildren());
     }
 
-    public function testAddParent()
+    public function testAddParent(): void
     {
         $foo = new Role('foo');
         $bar = new Role('bar');
@@ -70,7 +70,7 @@ class RoleTest extends TestCase
         $this->assertEquals([$bar, $baz], $foo->getParents());
     }
 
-    public function testPermissionHierarchy()
+    public function testPermissionHierarchy(): void
     {
         $foo = new Role('foo');
         $foo->addPermission('foo.permission');
@@ -98,7 +98,7 @@ class RoleTest extends TestCase
         $this->assertTrue($baz->hasPermission('baz.permission'));
     }
 
-    public function testCircleReferenceWithChild()
+    public function testCircleReferenceWithChild(): void
     {
         $foo = new Role('foo');
         $bar = new Role('bar');
@@ -111,7 +111,7 @@ class RoleTest extends TestCase
         $baz->addChild($foo);
     }
 
-    public function testCircleReferenceWithParent()
+    public function testCircleReferenceWithParent(): void
     {
         $foo = new Role('foo');
         $bar = new Role('bar');
@@ -124,7 +124,7 @@ class RoleTest extends TestCase
         $baz->addParent($foo);
     }
 
-    public function testGetPermissions()
+    public function testGetPermissions(): void
     {
         $foo = new Role('foo');
         $foo->addPermission('foo.permission');
@@ -171,7 +171,7 @@ class RoleTest extends TestCase
         ], $baz->getPermissions(false));
     }
 
-    public function testAddTwoChildRole()
+    public function testAddTwoChildRole(): void
     {
         $foo = new Role('foo');
         $bar = new Role('bar');
@@ -184,7 +184,7 @@ class RoleTest extends TestCase
         $this->assertEquals([$bar, $baz], $foo->getChildren());
     }
 
-    public function testAddSameParent()
+    public function testAddSameParent(): void
     {
         $foo = new Role('foo');
         $bar = new Role('bar');

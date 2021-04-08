@@ -26,7 +26,7 @@ class RbacTest extends TestCase
         $this->rbac = new Rbac\Rbac();
     }
 
-    public function testIsGrantedAssertion()
+    public function testIsGrantedAssertion(): void
     {
         $foo = new Rbac\Role('foo');
         $bar = new Rbac\Role('bar');
@@ -55,7 +55,7 @@ class RbacTest extends TestCase
         $this->assertEquals(true, $this->rbac->isGranted($foo, 'can.foo', $roleMatch));
     }
 
-    public function testIsGrantedSingleRole()
+    public function testIsGrantedSingleRole(): void
     {
         $foo = new Rbac\Role('foo');
         $foo->addPermission('can.bar');
@@ -66,7 +66,7 @@ class RbacTest extends TestCase
         $this->assertEquals(false, $this->rbac->isGranted('foo', 'can.baz'));
     }
 
-    public function testIsGrantedChildRoles()
+    public function testIsGrantedChildRoles(): void
     {
         $foo = new Rbac\Role('foo');
         $bar = new Rbac\Role('bar');
@@ -85,13 +85,13 @@ class RbacTest extends TestCase
         $this->assertEquals(false, $this->rbac->isGranted('bar', 'can.baz'));
     }
 
-    public function testIsGrantedWithInvalidRole()
+    public function testIsGrantedWithInvalidRole(): void
     {
         $this->expectException(Exception\InvalidArgumentException::class);
         $this->rbac->isGranted('foo', 'permission');
     }
 
-    public function testGetRole()
+    public function testGetRole(): void
     {
         $foo = new Rbac\Role('foo');
         $this->rbac->addRole($foo);
@@ -100,8 +100,10 @@ class RbacTest extends TestCase
 
     /**
      * @covers Laminas\Permissions\Rbac\Rbac::hasRole()
+     *
+     * @return void
      */
-    public function testHasRole()
+    public function testHasRole(): void
     {
         $foo = new Rbac\Role('foo');
         $snafu = new TestAsset\RoleTest('snafu');
@@ -125,20 +127,20 @@ class RbacTest extends TestCase
         $this->assertFalse($this->rbac->hasRole($snafu));
     }
 
-    public function testHasRoleWithInvalidElement()
+    public function testHasRoleWithInvalidElement(): void
     {
         $role = new \stdClass();
         $this->expectException(Exception\InvalidArgumentException::class);
         $this->rbac->hasRole($role);
     }
 
-    public function testGetUndefinedRole()
+    public function testGetUndefinedRole(): void
     {
         $this->expectException(Exception\InvalidArgumentException::class);
         $this->rbac->getRole('foo');
     }
 
-    public function testAddRoleFromString()
+    public function testAddRoleFromString(): void
     {
         $this->rbac->addRole('foo');
 
@@ -146,7 +148,7 @@ class RbacTest extends TestCase
         $this->assertInstanceOf('Laminas\Permissions\Rbac\Role', $foo);
     }
 
-    public function testAddRoleFromClass()
+    public function testAddRoleFromClass(): void
     {
         $foo = new Rbac\Role('foo');
 
@@ -157,14 +159,14 @@ class RbacTest extends TestCase
         $this->assertInstanceOf('Laminas\Permissions\Rbac\Role', $foo2);
     }
 
-    public function testAddRoleNotValid()
+    public function testAddRoleNotValid(): void
     {
         $foo = new \stdClass();
         $this->expectException(Exception\InvalidArgumentException::class);
         $this->rbac->addRole($foo);
     }
 
-    public function testAddRoleWithParentsUsingRbac()
+    public function testAddRoleWithParentsUsingRbac(): void
     {
         $foo = new Rbac\Role('foo');
         $bar = new Rbac\Role('bar');
@@ -177,7 +179,7 @@ class RbacTest extends TestCase
     }
 
 
-    public function testAddRoleWithAutomaticParentsUsingRbac()
+    public function testAddRoleWithAutomaticParentsUsingRbac(): void
     {
         $foo = new Rbac\Role('foo');
         $bar = new Rbac\Role('bar');
@@ -192,8 +194,10 @@ class RbacTest extends TestCase
 
     /**
      * @tesdox Test adding custom child roles works
+     *
+     * @return void
      */
-    public function testAddCustomChildRole()
+    public function testAddCustomChildRole(): void
     {
         $role = $this->getMockForAbstractClass(Rbac\RoleInterface::class);
         $this->rbac->setCreateMissingRoles(true);
@@ -211,7 +215,7 @@ class RbacTest extends TestCase
         $this->assertTrue($this->rbac->isGranted('parent', 'test'));
     }
 
-    public function testAddMultipleParentRole()
+    public function testAddMultipleParentRole(): void
     {
         $adminRole = new Rbac\Role('Administrator');
         $adminRole->addPermission('user.manage');
@@ -240,7 +244,7 @@ class RbacTest extends TestCase
         $this->assertEmpty($adminRole->getParents());
     }
 
-    public function testAddParentRole()
+    public function testAddParentRole(): void
     {
         $adminRole = new Rbac\Role('Administrator');
         $adminRole->addPermission('user.manage');
@@ -286,7 +290,7 @@ class RbacTest extends TestCase
         $this->assertFalse($this->rbac->isGranted('Manager', 'user.manage'));
     }
 
-    public function testGetRoles()
+    public function testGetRoles(): void
     {
         $adminRole = new Rbac\Role('Administrator');
         $adminRole->addPermission('user.manage');
@@ -300,7 +304,7 @@ class RbacTest extends TestCase
         $this->assertEquals([$adminRole, $managerRole], $this->rbac->getRoles());
     }
 
-    public function testEmptyRoles()
+    public function testEmptyRoles(): void
     {
         $this->assertEquals([], $this->rbac->getRoles());
     }

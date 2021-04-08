@@ -56,6 +56,7 @@ class Rbac
 
         if ($parents) {
             $parents = is_array($parents) ? $parents : [$parents];
+            /** @var RoleInterface|string $parent */
             foreach ($parents as $parent) {
                 if ($this->createMissingRoles && ! $this->hasRole($parent)) {
                     $this->addRole($parent);
