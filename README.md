@@ -1,7 +1,6 @@
 # laminas-permissions-rbac
 
-[![Build Status](https://travis-ci.com/laminas/laminas-permissions-rbac.svg?branch=master)](https://travis-ci.com/laminas/laminas-permissions-rbac)
-[![Coverage Status](https://coveralls.io/repos/laminas/laminas-permissions-rbac/badge.svg?branch=master)](https://coveralls.io/r/laminas/laminas-permissions-rbac?branch=master)
+[![Build Status](https://github.com/laminas/laminas-permissions-rbac/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/laminas/laminas-permissions-rbac/actions/workflows/continuous-integration.yml)
 
 Provides [Role-Based Access Control](https://it.wikipedia.org/wiki/Role-based_access_control)
 (RBAC) permissions management.
