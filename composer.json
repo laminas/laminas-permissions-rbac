@@ -1,7 +1,6 @@
 {
     "name": "laminas/laminas-permissions-rbac",
     "description": "Provides a role-based access control management",
-    "license": "BSD-3-Clause",
     "keywords": [
         "laminas",
         "laminas-permissions-rbac",
@@ -9,22 +8,13 @@
         "authorization"
     ],
     "homepage": "https://laminas.dev",
-    "support": {
-        "docs": "https://docs.laminas.dev/laminas-permissions-rbac/",
-        "issues": "https://github.com/laminas/laminas-permissions-rbac/issues",
-        "source": "https://github.com/laminas/laminas-permissions-rbac",
-        "rss": "https://github.com/laminas/laminas-permissions-rbac/releases.atom",
-        "chat": "https://laminas.dev/chat",
-        "forum": "https://discourse.laminas.dev"
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-    },
+    "license": "BSD-3-Clause",
     "require": {
         "php": "^7.3 || ~8.0.0",
         "laminas/laminas-zendframework-bridge": "^1.0"
+    },
+    "replace": {
+        "zendframework/zend-permissions-rbac": "^3.0.2"
     },
     "require-dev": {
         "laminas/laminas-coding-standard": "~1.0.0",
@@ -32,6 +22,10 @@
         "psalm/plugin-phpunit": "^0.15.1",
         "vimeo/psalm": "^4.7"
     },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {},
     "autoload": {
         "psr-4": {
             "Laminas\\Permissions\\Rbac\\": "src/"
@@ -54,7 +48,12 @@
         "test": "phpunit --colors=always",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
     },
-    "replace": {
-        "zendframework/zend-permissions-rbac": "^3.0.2"
+    "support": {
+        "issues": "https://github.com/laminas/laminas-permissions-rbac/issues",
+        "forum": "https://discourse.laminas.dev",
+        "chat": "https://laminas.dev/chat",
+        "source": "https://github.com/laminas/laminas-permissions-rbac",
+        "docs": "https://docs.laminas.dev/laminas-permissions-rbac/",
+        "rss": "https://github.com/laminas/laminas-permissions-rbac/releases.atom"
     }
 }
