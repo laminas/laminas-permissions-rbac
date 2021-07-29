@@ -42,6 +42,7 @@ use Laminas\Permissions\Rbac\Rbac;
 use Laminas\Permissions\Rbac\Role;
 
 $rbac = new Rbac();
+$rbac->setCreateMissingRoles(true);
 $foo  = new Role('foo');
 $bar  = new Role('bar');
 
