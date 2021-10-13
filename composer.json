@@ -20,7 +20,6 @@
     "config": {
         "sort-packages": true
     },
-    "extra": {},
     "require": {
         "php": "^7.3 || ~8.0.0 || ~8.1.0"
     },
