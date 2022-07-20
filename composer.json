@@ -29,7 +29,7 @@
     "require-dev": {
         "laminas/laminas-coding-standard": "~1.0.0",
         "phpunit/phpunit": "^9.3",
-        "psalm/plugin-phpunit": "^0.15.1",
+        "psalm/plugin-phpunit": "^0.17.0",
         "vimeo/psalm": "^4.7"
     },
     "autoload": {
