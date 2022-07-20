@@ -27,7 +27,7 @@
         "php": "^7.3 || ~8.0.0 || ~8.1.0"
     },
     "require-dev": {
-        "laminas/laminas-coding-standard": "~1.0.0",
+        "laminas/laminas-coding-standard": "~2.3.0",
         "phpunit/phpunit": "^9.3",
         "psalm/plugin-phpunit": "^0.17.0",
         "vimeo/psalm": "^4.7"
