@@ -1,35 +1,26 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-permissions-rbac for the canonical source repository
- * @copyright https://github.com/laminas/laminas-permissions-rbac/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-permissions-rbac/blob/master/LICENSE.md New BSD License
- */
-
 declare(strict_types=1);
 
 namespace Laminas\Permissions\Rbac;
 
+use function array_keys;
+use function array_merge;
+use function array_values;
+use function sprintf;
+
 class Role implements RoleInterface
 {
-    /**
-     * @var RoleInterface[]
-     */
+    /** @var RoleInterface[] */
     protected $children = [];
 
-    /**
-     * @var RoleInterface[]
-     */
+    /** @var RoleInterface[] */
     protected $parents = [];
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $name;
 
-    /**
-     * @var array
-     */
+    /** @var array<string, true> */
     protected $permissions = [];
 
     public function __construct(string $name)
@@ -40,7 +31,7 @@ class Role implements RoleInterface
     /**
      * Get the name of the role.
      */
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -48,7 +39,7 @@ class Role implements RoleInterface
     /**
      * Add a permission to the role.
      */
-    public function addPermission(string $name) : void
+    public function addPermission(string $name): void
     {
         $this->permissions[$name] = true;
     }
@@ -56,7 +47,7 @@ class Role implements RoleInterface
     /**
      * Checks if a permission exists for this role or any child roles.
      */
-    public function hasPermission(string $name) : bool
+    public function hasPermission(string $name): bool
     {
         if (isset($this->permissions[$name])) {
             return true;
@@ -75,7 +66,7 @@ class Role implements RoleInterface
      * Get the permissions of the role, included all the permissions
      * of the children if $children == true
      */
-    public function getPermissions(bool $children = true) : array
+    public function getPermissions(bool $children = true): array
     {
         $permissions = array_keys($this->permissions);
         if ($children) {
@@ -91,7 +82,7 @@ class Role implements RoleInterface
      *
      * @throws Exception\CircularReferenceException
      */
-    public function addChild(RoleInterface $child) : void
+    public function addChild(RoleInterface $child): void
     {
         $childName = $child->getName();
         if ($this->hasAncestor($child)) {
@@ -110,7 +101,7 @@ class Role implements RoleInterface
     /**
      * Check if a role is an ancestor.
      */
-    protected function hasAncestor(RoleInterface $role) : bool
+    protected function hasAncestor(RoleInterface $role): bool
     {
         if (isset($this->parents[$role->getName()])) {
             return true;
@@ -130,7 +121,7 @@ class Role implements RoleInterface
      *
      * @return RoleInterface[]
      */
-    public function getChildren() : array
+    public function getChildren(): array
     {
         return array_values($this->children);
     }
@@ -140,7 +131,7 @@ class Role implements RoleInterface
      *
      * @throws Exception\CircularReferenceException
      */
-    public function addParent(RoleInterface $parent) : void
+    public function addParent(RoleInterface $parent): void
     {
         $parentName = $parent->getName();
         if ($this->hasDescendant($parent)) {
@@ -159,7 +150,7 @@ class Role implements RoleInterface
     /**
      * Check if a role is a descendant.
      */
-    protected function hasDescendant(RoleInterface $role) : bool
+    protected function hasDescendant(RoleInterface $role): bool
     {
         if (isset($this->children[$role->getName()])) {
             return true;
@@ -179,7 +170,7 @@ class Role implements RoleInterface
      *
      * @return RoleInterface[]
      */
-    public function getParents() : array
+    public function getParents(): array
     {
         return array_values($this->parents);
     }

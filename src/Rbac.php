@@ -1,20 +1,19 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-permissions-rbac for the canonical source repository
- * @copyright https://github.com/laminas/laminas-permissions-rbac/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-permissions-rbac/blob/master/LICENSE.md New BSD License
- */
-
 declare(strict_types=1);
 
 namespace Laminas\Permissions\Rbac;
 
+use function array_values;
+use function is_array;
+use function is_callable;
+use function is_object;
+use function is_string;
+use function sprintf;
+
 class Rbac
 {
-    /**
-     * @var RoleInterface[]
-     */
+    /** @var array<string, RoleInterface> */
     protected $roles = [];
 
     /**
@@ -25,12 +24,12 @@ class Rbac
      */
     protected $createMissingRoles = false;
 
-    public function setCreateMissingRoles(bool $createMissingRoles) : void
+    public function setCreateMissingRoles(bool $createMissingRoles): void
     {
         $this->createMissingRoles = $createMissingRoles;
     }
 
-    public function getCreateMissingRoles() : bool
+    public function getCreateMissingRoles(): bool
     {
         return $this->createMissingRoles;
     }
@@ -40,10 +39,9 @@ class Rbac
      *
      * @param  string|RoleInterface $role
      * @param  null|array|RoleInterface $parents
-     * @throws Exception\InvalidArgumentException if $role is not a string or
-     *     RoleInterface.
+     * @throws Exception\InvalidArgumentException If $role is not a string or RoleInterface.
      */
-    public function addRole($role, $parents = null) : void
+    public function addRole($role, $parents = null): void
     {
         if (is_string($role)) {
             $role = new Role($role);
@@ -76,7 +74,7 @@ class Rbac
      *
      * @param  RoleInterface|string $role
      */
-    public function hasRole($role) : bool
+    public function hasRole($role): bool
     {
         if (! is_string($role) && ! $role instanceof RoleInterface) {
             throw new Exception\InvalidArgumentException(
@@ -96,9 +94,9 @@ class Rbac
     /**
      * Get a registered role by name
      *
-     * @throws Exception\InvalidArgumentException if role is not found.
+     * @throws Exception\InvalidArgumentException If role is not found.
      */
-    public function getRole(string $roleName) : RoleInterface
+    public function getRole(string $roleName): RoleInterface
     {
         if (! isset($this->roles[$roleName])) {
             throw new Exception\InvalidArgumentException(sprintf(
@@ -124,10 +122,10 @@ class Rbac
      *
      * @param RoleInterface|string $role
      * @param null|AssertionInterface|Callable $assertion
-     * @throws Exception\InvalidArgumentException if the role is not found.
-     * @throws Exception\InvalidArgumentException if the assertion is an invalid type.
+     * @throws Exception\InvalidArgumentException If the role is not found.
+     * @throws Exception\InvalidArgumentException If the assertion is an invalid type.
      */
-    public function isGranted($role, string $permission, $assertion = null) : bool
+    public function isGranted($role, string $permission, $assertion = null): bool
     {
         if (! $this->hasRole($role)) {
             throw new Exception\InvalidArgumentException(sprintf(
@@ -145,7 +143,8 @@ class Rbac
             return $result;
         }
 
-        if (! $assertion instanceof AssertionInterface
+        if (
+            ! $assertion instanceof AssertionInterface
             && ! is_callable($assertion)
         ) {
             throw new Exception\InvalidArgumentException(
