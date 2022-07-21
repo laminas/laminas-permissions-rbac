@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-permissions-rbac for the canonical source repository
- * @copyright https://github.com/laminas/laminas-permissions-rbac/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-permissions-rbac/blob/master/LICENSE.md New BSD License
- */
-
 declare(strict_types=1);
 
 namespace LaminasTest\Permissions\Rbac\Assertion;
@@ -24,9 +18,9 @@ class CallbackAssertionTest extends TestCase
      */
     public function testCallbackIsDecoratedAsClosure(): void
     {
-        $callback = function (): void {
+        $callback                 = function (): void {
         };
-        $assert = new Rbac\Assertion\CallbackAssertion($callback);
+        $assert                   = new Rbac\Assertion\CallbackAssertion($callback);
         $internalCallbackProperty = $this->extractPrivatePropertyValue('callback', $assert);
         $this->assertNotSame(
             $callback,
@@ -37,17 +31,15 @@ class CallbackAssertionTest extends TestCase
 
     /**
      * Ensures assert method provides callback with rbac as argument
-     *
-     * @return void
      */
     public function testAssertMethodPassRbacToCallback(): void
     {
-        $rbac = new Rbac\Rbac();
+        $rbac   = new Rbac\Rbac();
         $assert = new Rbac\Assertion\CallbackAssertion(function ($rbacArg) use ($rbac) {
             Assert::assertSame($rbacArg, $rbac);
             return false;
         });
-        $foo = new Rbac\Role('foo');
+        $foo    = new Rbac\Role('foo');
         $foo->addPermission('can.foo');
         $rbac->addRole($foo);
         $this->assertFalse($rbac->isGranted($foo, 'can.foo', $assert));
@@ -55,8 +47,6 @@ class CallbackAssertionTest extends TestCase
 
     /**
      * Ensures assert method returns callback's function value
-     *
-     * @return void
      */
     public function testAssertMethod(): void
     {
@@ -64,15 +54,9 @@ class CallbackAssertionTest extends TestCase
         $foo  = new Rbac\Role('foo');
         $bar  = new Rbac\Role('bar');
 
-        $assertRoleMatch = /**
-         * @return \Closure
-         *
-         * @psalm-return \Closure(Rbac\RoleInterface): bool
-         */
-        function (Rbac\RoleInterface $role): \Closure {
-            return function ($rbac) use ($role) {
-                return $role->getName() === 'foo';
-            };
+        /** @var Closure(Rbac\RoleInterface): Closure $assertRoleMatch */
+        $assertRoleMatch = function (Rbac\RoleInterface $role): Closure {
+            return fn (): bool => $role->getName() === 'foo';
         };
 
         $roleNoMatch = new Rbac\Assertion\CallbackAssertion($assertRoleMatch($bar));
@@ -118,9 +102,7 @@ class CallbackAssertionTest extends TestCase
         $rbac->isGranted('foo', 'can.foo', $callable);
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return mixed */
     private function extractPrivatePropertyValue(string $propertyName, Rbac\Assertion\CallbackAssertion $assert)
     {
         $reflectionProperty = new ReflectionProperty($assert, $propertyName);

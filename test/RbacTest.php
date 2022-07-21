@@ -1,25 +1,18 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-permissions-rbac for the canonical source repository
- * @copyright https://github.com/laminas/laminas-permissions-rbac/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-permissions-rbac/blob/master/LICENSE.md New BSD License
- */
-
 declare(strict_types=1);
 
 namespace LaminasTest\Permissions\Rbac;
 
 use Laminas\Permissions\Rbac;
 use Laminas\Permissions\Rbac\Exception;
+use Laminas\Permissions\Rbac\Role;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 class RbacTest extends TestCase
 {
-    /**
-     * @var \Laminas\Permissions\Rbac\Rbac
-     */
-    protected $rbac;
+    protected Rbac\Rbac $rbac;
 
     public function setUp(): void
     {
@@ -100,12 +93,10 @@ class RbacTest extends TestCase
 
     /**
      * @covers Laminas\Permissions\Rbac\Rbac::hasRole()
-     *
-     * @return void
      */
     public function testHasRole(): void
     {
-        $foo = new Rbac\Role('foo');
+        $foo   = new Rbac\Role('foo');
         $snafu = new TestAsset\RoleTest('snafu');
 
         $this->rbac->addRole('bar');
@@ -129,7 +120,7 @@ class RbacTest extends TestCase
 
     public function testHasRoleWithInvalidElement(): void
     {
-        $role = new \stdClass();
+        $role = new stdClass();
         $this->expectException(Exception\InvalidArgumentException::class);
         $this->rbac->hasRole($role);
     }
@@ -145,7 +136,7 @@ class RbacTest extends TestCase
         $this->rbac->addRole('foo');
 
         $foo = $this->rbac->getRole('foo');
-        $this->assertInstanceOf('Laminas\Permissions\Rbac\Role', $foo);
+        $this->assertInstanceOf(Role::class, $foo);
     }
 
     public function testAddRoleFromClass(): void
@@ -156,12 +147,12 @@ class RbacTest extends TestCase
         $foo2 = $this->rbac->getRole('foo');
 
         $this->assertEquals($foo, $foo2);
-        $this->assertInstanceOf('Laminas\Permissions\Rbac\Role', $foo2);
+        $this->assertInstanceOf(Role::class, $foo2);
     }
 
     public function testAddRoleNotValid(): void
     {
-        $foo = new \stdClass();
+        $foo = new stdClass();
         $this->expectException(Exception\InvalidArgumentException::class);
         $this->rbac->addRole($foo);
     }
@@ -178,7 +169,6 @@ class RbacTest extends TestCase
         $this->assertEquals([$bar], $foo->getChildren());
     }
 
-
     public function testAddRoleWithAutomaticParentsUsingRbac(): void
     {
         $foo = new Rbac\Role('foo');
@@ -194,8 +184,6 @@ class RbacTest extends TestCase
 
     /**
      * @tesdox Test adding custom child roles works
-     *
-     * @return void
      */
     public function testAddCustomChildRole(): void
     {

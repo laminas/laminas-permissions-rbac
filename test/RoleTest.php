@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-permissions-rbac for the canonical source repository
- * @copyright https://github.com/laminas/laminas-permissions-rbac/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-permissions-rbac/blob/master/LICENSE.md New BSD License
- */
-
 declare(strict_types=1);
 
 namespace LaminasTest\Permissions\Rbac;
@@ -14,6 +8,8 @@ use Laminas\Permissions\Rbac\Exception;
 use Laminas\Permissions\Rbac\Role;
 use Laminas\Permissions\Rbac\RoleInterface;
 use PHPUnit\Framework\TestCase;
+use stdClass;
+use TypeError;
 
 class RoleTest extends TestCase
 {
@@ -41,9 +37,9 @@ class RoleTest extends TestCase
 
     public function testInvalidPermission(): void
     {
-        $perm = new \stdClass();
-        $foo = new Role('foo');
-        $this->expectException(\TypeError::class);
+        $perm = new stdClass();
+        $foo  = new Role('foo');
+        $this->expectException(TypeError::class);
         $foo->addPermission($perm);
     }
 
@@ -144,30 +140,30 @@ class RoleTest extends TestCase
             'bar.permission',
             'foo.permission',
             'foo.2nd-permission',
-            'baz.permission'
+            'baz.permission',
         ], $bar->getPermissions());
 
         $this->assertEquals([
-            'bar.permission'
+            'bar.permission',
         ], $bar->getPermissions(false));
 
         $this->assertEquals([
             'foo.permission',
             'foo.2nd-permission',
-            'baz.permission'
+            'baz.permission',
         ], $foo->getPermissions());
 
         $this->assertEquals([
             'foo.permission',
-            'foo.2nd-permission'
+            'foo.2nd-permission',
         ], $foo->getPermissions(false));
 
         $this->assertEquals([
-            'baz.permission'
+            'baz.permission',
         ], $baz->getPermissions());
 
         $this->assertEquals([
-            'baz.permission'
+            'baz.permission',
         ], $baz->getPermissions(false));
     }
 
