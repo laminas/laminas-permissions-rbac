@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.24.0@06dd975cb55d36af80f242561738f16c5f58264f">
+<files psalm-version="5.4.0@62db5d4f6a7ae0a20f7cc5a4952d730272fc0863">
   <file src="src/Assertion/CallbackAssertion.php">
     <MixedInferredReturnType occurrences="1">
-      <code>bool</code>
       <code>bool</code>
     </MixedInferredReturnType>
     <MixedReturnStatement occurrences="1">
@@ -16,6 +15,9 @@
     </RedundantCondition>
   </file>
   <file src="src/Role.php">
+    <MixedArgument occurrences="1">
+      <code>$child-&gt;getPermissions()</code>
+    </MixedArgument>
     <UndefinedInterfaceMethod occurrences="3">
       <code>getPermissions</code>
       <code>hasAncestor</code>
@@ -29,14 +31,11 @@
     <MissingClosureParamType occurrences="4">
       <code>$permission</code>
       <code>$rbac</code>
-      <code>$rbac</code>
       <code>$rbacArg</code>
-      <code>$role</code>
       <code>$role</code>
     </MissingClosureParamType>
     <UnusedClosureParam occurrences="3">
       <code>$permission</code>
-      <code>$rbac</code>
       <code>$rbac</code>
       <code>$role</code>
     </UnusedClosureParam>
@@ -44,7 +43,6 @@
   <file src="test/RbacTest.php">
     <InvalidArgument occurrences="3">
       <code>$foo</code>
-      <code>$role</code>
       <code>$role</code>
       <code>'parent'</code>
     </InvalidArgument>
