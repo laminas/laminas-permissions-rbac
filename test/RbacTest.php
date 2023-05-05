@@ -91,13 +91,10 @@ class RbacTest extends TestCase
         $this->assertEquals($foo, $this->rbac->getRole('foo'));
     }
 
-    /**
-     * @covers Laminas\Permissions\Rbac\Rbac::hasRole()
-     */
     public function testHasRole(): void
     {
         $foo   = new Rbac\Role('foo');
-        $snafu = new TestAsset\RoleTest('snafu');
+        $snafu = new TestAsset\TestRole('snafu');
 
         $this->rbac->addRole('bar');
         $this->rbac->addRole($foo);
@@ -187,7 +184,7 @@ class RbacTest extends TestCase
      */
     public function testAddCustomChildRole(): void
     {
-        $role = $this->getMockForAbstractClass(Rbac\RoleInterface::class);
+        $role = $this->createMock(Rbac\RoleInterface::class);
         $this->rbac->setCreateMissingRoles(true);
         $this->rbac->addRole($role, 'parent');
 

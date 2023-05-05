@@ -106,7 +106,6 @@ class CallbackAssertionTest extends TestCase
     private function extractPrivatePropertyValue(string $propertyName, Rbac\Assertion\CallbackAssertion $assert)
     {
         $reflectionProperty = new ReflectionProperty($assert, $propertyName);
-        $reflectionProperty->setAccessible(true);
         return $reflectionProperty->getValue($assert);
     }
 }
