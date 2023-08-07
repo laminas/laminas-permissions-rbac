@@ -190,12 +190,12 @@ class RbacTest extends TestCase
 
         $role->expects($this->any())
             ->method('getName')
-            ->will($this->returnValue('customchild'));
+            ->willReturn('customchild');
 
         $role->expects($this->once())
             ->method('hasPermission')
             ->with('test')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $this->assertTrue($this->rbac->isGranted('parent', 'test'));
     }
