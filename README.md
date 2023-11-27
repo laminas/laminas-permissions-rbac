@@ -1,6 +1,8 @@
 # laminas-permissions-rbac
 
 [![Build Status](https://github.com/laminas/laminas-permissions-rbac/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/laminas/laminas-permissions-rbac/actions/workflows/continuous-integration.yml)
+[![type-coverage](https://shepherd.dev/github/laminas/laminas-permissions-rbac/coverage.svg)](https://shepherd.dev/github/laminas/laminas-permissions-rbac)
+[![Psalm level](https://shepherd.dev/github/laminas/laminas-permissions-rbac/level.svg)](https://shepherd.dev/github/laminas/laminas-permissions-rbac)
 
 > ## 🇷🇺 Русским гражданам
 >
