@@ -44,7 +44,7 @@ class Rbac
     public function addRole($role, $parents = null): void
     {
         if (is_string($role)) {
-            $role = new Role($role);
+            $role = $this->roles[$role] ?? new Role($role);
         }
         if (! $role instanceof RoleInterface) {
             throw new Exception\InvalidArgumentException(
