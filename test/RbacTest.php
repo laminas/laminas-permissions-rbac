@@ -179,6 +179,21 @@ class RbacTest extends TestCase
         $this->assertEquals([$bar], $foo->getChildren());
     }
 
+    public function testAddRoleWithAutomaticParentsFromStringUsingRbac(): void
+    {
+        $this->rbac->setCreateMissingRoles(true);
+        $this->assertTrue($this->rbac->getCreateMissingRoles());
+
+        $this->rbac->addRole('bar', ['foo']);
+        $this->rbac->addRole('foo');
+
+        $foo = $this->rbac->getRole('foo');
+        $bar = $this->rbac->getRole('bar');
+
+        $this->assertEquals([$foo], $bar->getParents());
+        $this->assertEquals([$bar], $foo->getChildren());
+    }
+
     /**
      * @tesdox Test adding custom child roles works
      */
