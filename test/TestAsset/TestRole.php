@@ -6,6 +6,6 @@ namespace LaminasTest\Permissions\Rbac\TestAsset;
 
 use Laminas\Permissions\Rbac\Role;
 
-class TestRole extends Role
+final class TestRole extends Role
 {
 }

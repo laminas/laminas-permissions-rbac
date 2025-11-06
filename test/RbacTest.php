@@ -10,7 +10,7 @@ use Laminas\Permissions\Rbac\Role;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-class RbacTest extends TestCase
+final class RbacTest extends TestCase
 {
     protected Rbac\Rbac $rbac;
 

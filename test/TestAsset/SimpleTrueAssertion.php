@@ -8,7 +8,7 @@ use Laminas\Permissions\Rbac\AssertionInterface;
 use Laminas\Permissions\Rbac\Rbac;
 use Laminas\Permissions\Rbac\RoleInterface;
 
-class SimpleTrueAssertion implements AssertionInterface
+final class SimpleTrueAssertion implements AssertionInterface
 {
     public function assert(Rbac $rbac, RoleInterface $role, string $permission): bool
     {

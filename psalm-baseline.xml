@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.10.0@a5effd2d2dddd1a7ea7a0f6a051ce63ff979e356">
+<files psalm-version="6.13.1@1e3b7f0a8ab32b23197b91107adc0a7ed8a05b51">
   <file src="src/Assertion/CallbackAssertion.php">
-    <MixedInferredReturnType>
-      <code>bool</code>
-    </MixedInferredReturnType>
     <MixedReturnStatement>
-      <code>$callback($rbac, $role, $permission)</code>
+      <code><![CDATA[$callback($rbac, $role, $permission)]]></code>
     </MixedReturnStatement>
   </file>
   <file src="src/Rbac.php">
     <RedundantCondition>
-      <code>$result</code>
-      <code>$result</code>
+      <code><![CDATA[$result]]></code>
+      <code><![CDATA[$result]]></code>
     </RedundantCondition>
   </file>
   <file src="src/Role.php">
@@ -19,44 +16,44 @@
       <code><![CDATA[$child->getPermissions()]]></code>
     </MixedArgument>
     <UndefinedInterfaceMethod>
-      <code>getPermissions</code>
-      <code>hasAncestor</code>
-      <code>hasDescendant</code>
+      <code><![CDATA[getPermissions]]></code>
+      <code><![CDATA[hasAncestor]]></code>
+      <code><![CDATA[hasDescendant]]></code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/Assertion/CallbackAssertionTest.php">
     <InvalidArgument>
-      <code>$callable</code>
+      <code><![CDATA[$callable]]></code>
     </InvalidArgument>
     <MissingClosureParamType>
-      <code>$permission</code>
-      <code>$rbac</code>
-      <code>$rbacArg</code>
-      <code>$role</code>
+      <code><![CDATA[$permission]]></code>
+      <code><![CDATA[$rbac]]></code>
+      <code><![CDATA[$rbacArg]]></code>
+      <code><![CDATA[$role]]></code>
     </MissingClosureParamType>
     <UnusedClosureParam>
-      <code>$permission</code>
-      <code>$rbac</code>
-      <code>$role</code>
+      <code><![CDATA[$permission]]></code>
+      <code><![CDATA[$rbac]]></code>
+      <code><![CDATA[$role]]></code>
     </UnusedClosureParam>
   </file>
   <file src="test/RbacTest.php">
     <InvalidArgument>
-      <code>$foo</code>
-      <code>$role</code>
+      <code><![CDATA[$foo]]></code>
+      <code><![CDATA[$role]]></code>
       <code><![CDATA['parent']]></code>
     </InvalidArgument>
     <TooManyArguments>
-      <code>new TestAsset\RoleMustMatchAssertion($bar)</code>
-      <code>new TestAsset\RoleMustMatchAssertion($foo)</code>
+      <code><![CDATA[new TestAsset\RoleMustMatchAssertion($bar)]]></code>
+      <code><![CDATA[new TestAsset\RoleMustMatchAssertion($foo)]]></code>
     </TooManyArguments>
   </file>
   <file src="test/RoleTest.php">
     <InvalidArgument>
-      <code>$perm</code>
+      <code><![CDATA[$perm]]></code>
     </InvalidArgument>
     <InvalidCast>
-      <code>$perm</code>
+      <code><![CDATA[$perm]]></code>
     </InvalidCast>
   </file>
 </files>

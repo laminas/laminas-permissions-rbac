@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 use stdClass;
 use TypeError;
 
-class RoleTest extends TestCase
+final class RoleTest extends TestCase
 {
     public function testConstructor(): void
     {
