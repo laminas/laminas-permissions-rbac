@@ -9,7 +9,7 @@ use Laminas\Permissions\Rbac\AssertionInterface;
 use Laminas\Permissions\Rbac\Rbac;
 use Laminas\Permissions\Rbac\RoleInterface;
 
-final class CallbackAssertion implements AssertionInterface
+class CallbackAssertion implements AssertionInterface
 {
     /** @var Closure(Rbac, ?RoleInterface, ?string): bool */
     private Closure $callback;
