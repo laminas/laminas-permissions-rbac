@@ -24,14 +24,6 @@
                 <directory name="test" />
             </errorLevel>
         </MissingOverrideAttribute>
-        <ClassMustBeFinal>
-            <errorLevel type="suppress">
-                <file name="src/Assertion/CallbackAssertion.php"/>
-                <file name="src/Rbac.php"/>
-                <file name="src/Exception/CircularReferenceException.php"/>
-                <file name="src/Exception/InvalidArgumentException.php"/>
-            </errorLevel>
-        </ClassMustBeFinal>
     </issueHandlers>
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
