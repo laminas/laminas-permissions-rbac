@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 use ReflectionProperty;
 use stdClass;
 
-class CallbackAssertionTest extends TestCase
+final class CallbackAssertionTest extends TestCase
 {
     /**
      * Ensures callback is set in object

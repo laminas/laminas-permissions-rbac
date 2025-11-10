@@ -4,17 +4,10 @@
          cacheDirectory=".phpunit.cache"
          bootstrap="./vendor/autoload.php"
          colors="true"
-         displayDetailsOnIncompleteTests="true"
-         displayDetailsOnSkippedTests="true"
-         displayDetailsOnTestsThatTriggerDeprecations="true"
-         displayDetailsOnTestsThatTriggerErrors="true"
-         displayDetailsOnTestsThatTriggerNotices="true"
-         displayDetailsOnTestsThatTriggerWarnings="true"
-         displayDetailsOnPhpunitDeprecations="true"
+         displayDetailsOnAllIssues="true"
          failOnWarning="true"
          failOnNotice="true"
          failOnDeprecation="true"
-         failOnPhpunitDeprecation="true"
 >
     <testsuites>
         <testsuite name="laminas-permissions-rbac Test Suite">
