@@ -20,7 +20,7 @@ class CallbackAssertion implements AssertionInterface
     public function __construct(callable $callback)
     {
         // Cast callable to a closure to enforce type safety.
-        $this->callback = function (
+        $this->callback = static function (
             Rbac $rbac,
             ?RoleInterface $role = null,
             ?string $permission = null
