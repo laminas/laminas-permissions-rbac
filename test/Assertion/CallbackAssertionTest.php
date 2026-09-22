@@ -80,7 +80,8 @@ final class CallbackAssertionTest extends TestCase
         $foo->addPermission('can.foo');
         $rbac->addRole($foo);
 
-        $callable = /**
+        $callable =
+        /**
          * @return true
          */
         static function ($rbac, $permission, $role): bool {
