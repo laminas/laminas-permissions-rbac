@@ -20,24 +20,25 @@
     "config": {
         "sort-packages": true,
         "platform": {
-            "php": "8.2.99"
+            "php": "8.3.99"
         },
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
     "require": {
-        "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0"
+        "php": "~8.3.0 || ~8.4.0 || ~8.5.0 || ~8.6.0"
     },
     "require-dev": {
-        "amphp/dns": "^2.4.0",
-        "amphp/socket": "^2.3.1",
-        "boundwize/structarmed": "^0.21.0",
+        "amphp/dns": "^2.4.2",
+        "amphp/socket": "^2.4.2",
+        "boundwize/structarmed": "^0.21.15",
+        "laminas/internal-tooling": "^1.2",
         "laminas/laminas-coding-standard": "~3.1.0",
-        "phpunit/phpunit": "^11.5.42",
-        "psalm/plugin-phpunit": "^0.22.0",
+        "phpunit/phpunit": "^11.5.58",
+        "psalm/plugin-phpunit": "^0.22.2",
         "sebastian/recursion-context": "^6.0.3",
-        "vimeo/psalm": "^6.13.1"
+        "vimeo/psalm": "^6.20.11"
     },
     "autoload": {
         "psr-4": {
