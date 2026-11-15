@@ -15,18 +15,16 @@ use Laminas\Permissions\Rbac\RoleInterface;
 class CallbackAssertion implements AssertionInterface
 {
     /** @var Closure(Rbac, ?RoleInterface, ?string): bool */
-    private Closure $callback;
+    private readonly Closure $callback;
 
     public function __construct(callable $callback)
     {
         // Cast callable to a closure to enforce type safety.
-        $this->callback = static function (
+        $this->callback = static fn(
             Rbac $rbac,
             ?RoleInterface $role = null,
             ?string $permission = null
-        ) use ($callback): bool {
-            return $callback($rbac, $role, $permission);
-        };
+        ): bool => $callback($rbac, $role, $permission);
     }
 
     /**

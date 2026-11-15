@@ -55,9 +55,9 @@ final class CallbackAssertionTest extends TestCase
         $bar  = new Rbac\Role('bar');
 
         /** @var Closure(Rbac\RoleInterface): Closure $assertRoleMatch */
-        $assertRoleMatch = static function (Rbac\RoleInterface $role): Closure {
-            return static fn (): bool => $role->getName() === 'foo';
-        };
+        $assertRoleMatch = static fn(
+            Rbac\RoleInterface $role
+        ): Closure => static fn (): bool => $role->getName() === 'foo';
 
         $roleNoMatch = new Rbac\Assertion\CallbackAssertion($assertRoleMatch($bar));
         $roleMatch   = new Rbac\Assertion\CallbackAssertion($assertRoleMatch($foo));
@@ -84,9 +84,7 @@ final class CallbackAssertionTest extends TestCase
         /**
          * @return true
          */
-        static function ($rbac, $permission, $role): bool {
-            return true;
-        };
+        static fn($rbac, $permission, $role): bool => true;
         $this->assertTrue($rbac->isGranted('foo', 'can.foo', $callable));
         $this->assertFalse($rbac->isGranted('foo', 'can.bar', $callable));
     }
