@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4b9dbd7c74a6650dc0fdab650cd0546e",
+    "content-hash": "e2390ec648ebc5ea4e28248640a39112",
     "packages": [],
     "packages-dev": [
         {
@@ -907,16 +907,16 @@
         },
         {
             "name": "boundwize/structarmed",
-            "version": "0.21.15",
+            "version": "0.22.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/boundwize/structarmed.git",
-                "reference": "8ad16e0ba542353ff9188c20d9b184e0179a8b3b"
+                "reference": "0ca44dc575ed7b7d3720e5067c7192f0432ed6ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/boundwize/structarmed/zipball/8ad16e0ba542353ff9188c20d9b184e0179a8b3b",
-                "reference": "8ad16e0ba542353ff9188c20d9b184e0179a8b3b",
+                "url": "https://api.github.com/repos/boundwize/structarmed/zipball/0ca44dc575ed7b7d3720e5067c7192f0432ed6ab",
+                "reference": "0ca44dc575ed7b7d3720e5067c7192f0432ed6ab",
                 "shasum": ""
             },
             "require": {
@@ -973,7 +973,7 @@
             ],
             "support": {
                 "issues": "https://github.com/boundwize/structarmed/issues",
-                "source": "https://github.com/boundwize/structarmed/tree/0.21.15"
+                "source": "https://github.com/boundwize/structarmed/tree/0.22.1"
             },
             "funding": [
                 {
@@ -981,8 +981,8 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-11-14T16:50:35+00:00",
-            "published-time": "2026-11-14T16:51:09+00:00"
+            "time": "2026-11-22T08:33:41+00:00",
+            "published-time": "2026-11-22T08:34:02+00:00"
         },
         {
             "name": "carthage-software/mago",
