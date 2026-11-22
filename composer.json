@@ -36,7 +36,7 @@
         "laminas/internal-tooling": "^1.2",
         "laminas/laminas-coding-standard": "~3.1.0",
         "phpunit/phpunit": "^11.5.58",
-        "psalm/plugin-phpunit": "^0.22.2",
+        "psalm/plugin-phpunit": "^1.0.0",
         "sebastian/recursion-context": "^6.0.3",
         "vimeo/psalm": "^6.20.11"
     },
